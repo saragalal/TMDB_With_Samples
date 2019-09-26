@@ -20,7 +20,7 @@ protocol ListActorsPresenterProtocal: BasePresenterProtocol {
     
 }
 
-protocol ListActorsViewProtocal:BaseViewProtocal {
+protocol ListActorsViewProtocal: BaseViewProtocal {
     
 }
 

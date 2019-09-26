@@ -7,5 +7,5 @@ target 'TMDB' do
 	use_frameworks!
 	# Pods for Sample MVP
 	pod 'Moya'
-
+         pod 'AlamofireImage', '~> 3.5'
 end

@@ -8,6 +8,6 @@
 
 import UIKit
 
-class ListActorsViewController: UIViewController {
+class ListActorsViewController: BaseViewController<ListActorsPresenter> ,ListActorsViewProtocal {
 
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92C7605B233CF5200082A1FC /* ListActorsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7605A233CF5200082A1FC /* ListActorsModule.swift */; };
+		92C7605D233CF6F00082A1FC /* ListActorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7605C233CF6F00082A1FC /* ListActorsPresenter.swift */; };
+		92C76061233CF72F0082A1FC /* ListActorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C76060233CF72F0082A1FC /* ListActorsModel.swift */; };
 		98B8CD6049353E68D10D88B7 /* Pods_TMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97C5A53175785566AF881A9 /* Pods_TMDB.framework */; };
 		F71BE3BB23327215005A0BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71BE3BA23327215005A0BA4 /* AppDelegate.swift */; };
 		F71BE3C223327217005A0BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F71BE3C123327217005A0BA4 /* Assets.xcassets */; };
@@ -41,6 +44,9 @@
 /* Begin PBXFileReference section */
 		0FCAF620690F52FAD3EA7352 /* Pods-TMDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDB.debug.xcconfig"; path = "Target Support Files/Pods-TMDB/Pods-TMDB.debug.xcconfig"; sourceTree = "<group>"; };
 		14E7A82E9B83510EE763DD65 /* Pods-TMDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDB.release.xcconfig"; path = "Target Support Files/Pods-TMDB/Pods-TMDB.release.xcconfig"; sourceTree = "<group>"; };
+		92C7605A233CF5200082A1FC /* ListActorsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsModule.swift; sourceTree = "<group>"; };
+		92C7605C233CF6F00082A1FC /* ListActorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsPresenter.swift; sourceTree = "<group>"; };
+		92C76060233CF72F0082A1FC /* ListActorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsModel.swift; sourceTree = "<group>"; };
 		B03670A045BAB1A8BE150F70 /* Pods-Sample MVP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample MVP.release.xcconfig"; path = "Target Support Files/Pods-Sample MVP/Pods-Sample MVP.release.xcconfig"; sourceTree = "<group>"; };
 		E88B76BD53217998401F565B /* Pods-Sample MVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample MVP.debug.xcconfig"; path = "Target Support Files/Pods-Sample MVP/Pods-Sample MVP.debug.xcconfig"; sourceTree = "<group>"; };
 		F71BE3B723327215005A0BA4 /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +171,9 @@
 				F7BF21CD233A3A61009DBDA5 /* ListActorsProtocals.swift */,
 				F71BE3D023327286005A0BA4 /* ListActorsViewController.swift */,
 				F71BE3D123327286005A0BA4 /* ListActorsViewController.xib */,
+				92C7605A233CF5200082A1FC /* ListActorsModule.swift */,
+				92C7605C233CF6F00082A1FC /* ListActorsPresenter.swift */,
+				92C76060233CF72F0082A1FC /* ListActorsModel.swift */,
 			);
 			path = ListActors;
 			sourceTree = "<group>";
@@ -408,11 +417,14 @@
 				F71BE3E8233275A9005A0BA4 /* ProductService.swift in Sources */,
 				F71BE3E6233275A9005A0BA4 /* StaticHeaderPlugin.swift in Sources */,
 				F71BE3F523328C55005A0BA4 /* APIResponse.swift in Sources */,
+				92C7605B233CF5200082A1FC /* ListActorsModule.swift in Sources */,
 				F71BE3F323328C55005A0BA4 /* Person.swift in Sources */,
 				F71BE3D6233272B2005A0BA4 /* ActorsDetailsViewController.swift in Sources */,
+				92C7605D233CF6F00082A1FC /* ListActorsPresenter.swift in Sources */,
 				F71BE3BB23327215005A0BA4 /* AppDelegate.swift in Sources */,
 				F71BE3EC233275A9005A0BA4 /* NetworkError.swift in Sources */,
 				F71BE3E7233275A9005A0BA4 /* NetworkService+ActorsService.swift in Sources */,
+				92C76061233CF72F0082A1FC /* ListActorsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
