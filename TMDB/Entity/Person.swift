@@ -15,7 +15,16 @@ struct Person : Codable {
 	let popularity : Float?
 	let profilePath : String?
 
-
+    init() {
+        id = 0
+        name = ""
+        knownFor = []
+        profilePath = ""
+        popularity = 0.0
+        adult = false
+        gender = 1
+        knownForDepartment = ""
+    }
 	enum CodingKeys: String, CodingKey {
 		case adult = "adult"
 		case gender = "gender"

@@ -12,27 +12,77 @@ class ListActorsPresenter: BasePresenter, ListActorsPresenterProtocal{
     var currentPage: Int
     var view: ListActorsViewProtocal?
     var model: ListActorsModelProtocal?
-    required init(view: BaseViewProtocal, model: BaseModelProtocal) {
+    var searchActivated = false
+    init(view: ListActorsViewProtocal, model: ListActorsModelProtocal) {
         self.view = view
         self.model = model
+        self.currentPage = 0
+    }
+    func viewDidLoad() {
+        currentPage = 1
+        getList()
     }
     func activateSearch() {
-        <#code#>
+        searchActivated = true
     }
     
     func cancelSearch() {
-        <#code#>
+        currentPage = 1
+        searchActivated = false
+        getList()
     }
     
     func loadActors() {
-        <#code#>
+        getSearchedList()
     }
     
     func refreshActores() {
-        <#code#>
+        removeDataFromTableView()
+        currentPage = 1
+        getList()
     }
     
     func loadMoreActores() {
-        <#code#>
+        currentPage += 1
+        if searchActivated{
+           getSearchedList()
+        }else {
+        getList()
+       }
+    }
+    func getList() {
+        model?.getActors(forPage: currentPage, compelation: {result in
+            switch result {
+            case .success(let arrayOfPersons):
+                print("\(arrayOfPersons)")
+                let listActors = arrayOfPersons as? [Person]
+                self.view?.add(actors: listActors)
+                self.view?.updateTableView()
+            case .failure(let error):
+                print("\(error)")
+               // self.view?.showErrorMessage?(title: "error", message: error.localizedDescription)
+            }
+        })
+    }
+    func getSearchedList() {
+        if let searchText = view?.getSearchText() {
+        model?.getSearchedActors(forPage: currentPage,text: searchText ,compelation: {result in
+            switch result {
+            case .success(let arrayOfPersons):
+                print("\(arrayOfPersons)")
+                let listActors = arrayOfPersons as? [Person]
+                self.view?.add(actors: listActors)
+                self.view?.updateTableView()
+            case .failure(let error):
+                print("\(error)")
+                // self.view?.showErrorMessage?(title: "error", message: error.localizedDescription)
+            }
+        })
+    }
+}
+    
+    func removeDataFromTableView() {
+        view?.clearData()
+        view?.updateTableView()
     }
 }

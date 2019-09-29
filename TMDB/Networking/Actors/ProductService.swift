@@ -13,23 +13,31 @@ import Moya
 
 enum  ActorsService {
     case popular
+    case search(text: String)
 }
 
 extension ActorsService: TargetType {
     var baseURL: URL {
         return URL(string: NetworkManager.shared.networkConfig.baseUrl)!
     }
-    
+    var searchURL: URL {
+        return URL(string: NetworkManager.shared.networkConfig.baseUrl)!
+    }
     var path: String {
         switch self {
         case .popular:
             return "/person/popular"
+        case .search:
+            return "/search/person"
         }
+        
     }
     
     var method: Moya.Method {
         switch self {
         case .popular:
+            return .get
+        case .search:
             return .get
         }
     }
@@ -37,6 +45,8 @@ extension ActorsService: TargetType {
     var sampleData: Data {
         switch self {
         case .popular:
+            return Data()
+        case .search:
             return Data()
         }
     }
@@ -47,6 +57,11 @@ extension ActorsService: TargetType {
 			return .requestParameters(
 				parameters: ["api_key":NetworkManager.shared.networkConfig.apiKey],
 				encoding: URLEncoding.default)
+        case .search(let text):
+            return .requestParameters(
+                parameters: ["api_key":NetworkManager.shared.networkConfig.apiKey,
+                             "query":text],
+                encoding: URLEncoding.default)
         }
     }
     

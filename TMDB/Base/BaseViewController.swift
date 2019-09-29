@@ -25,4 +25,22 @@ class BaseViewController<Presenter:BasePresenterProtocol>: UIViewController, Bas
     public func setPresenter (presenter: Presenter) {
         self.presenter = presenter
     }
+    func showLoading(allowNavigation: Bool) {
+        print("showLoading")
+    }
+    func hideLoading() {
+        print("hideLoading")
+    }
+    func loadDataSuccess() {
+        print("loadDataSuccess")
+    }
+    func loadDataFailed(with error: Error?) {
+        print("loadDataFailed")
+    }
+    func showSuccessMessage() {
+        print("showSuccessMessage")
+    }
+    func showErrorMessage() {
+        print("showErrorMessage")
+    }
 }

@@ -9,9 +9,38 @@
 import Foundation
 
 class ListActorsModel: BaseModel, ListActorsModelProtocal {
-    func getActors(forPage page: Int, compelation: Result<Any, Error>) {
-        <#code#>
+    func getActors(forPage page: Int, compelation: @escaping ((Result<Any, Error>) -> Void)) {
+        NetworkManager.shared.getActors(pageNumber: page) { (response, statusCode) in
+            if statusCode == 200{
+                switch response {
+                case .success(let result):
+                    print("\(result)")
+                    if let personsArray = result.results {
+                    compelation(.success(personsArray))
+                    }
+                case .failure(let error):
+                    print("\(error)")
+                    compelation(.failure(error))
+                }
+            }
+        }
+    }
+    func getSearchedActors(forPage page: Int,text: String ,compelation: @escaping ((Result<Any, Error>) -> Void)) {
+        NetworkManager.shared.getSearchedActors(pageNumber: page,searchText: text) { (response, statusCode) in
+            if statusCode == 200{
+                switch response {
+                case .success(let result):
+                    print("\(result)")
+                    if let personsArray = result.results {
+                        compelation(.success(personsArray))
+                    }
+                case .failure(let error):
+                    print("\(error)")
+                    compelation(.failure(error))
+                }
+            }
+        }
     }
     
-    
 }
+

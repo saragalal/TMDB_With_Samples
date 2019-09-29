@@ -25,7 +25,7 @@ protocol BaseListAdapterProtocal:class {
     var showEmptyState: ((Bool) -> Void)? { get set}
     
     func add(item: DataType)
-    func add(items: [DataType])
+    func add(items: [DataType]?)
     func update(item: DataType)
     func count() -> Int
     func isLastIndex(index: IndexPath) -> Bool

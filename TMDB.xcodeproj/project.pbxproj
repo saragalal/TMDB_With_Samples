@@ -10,6 +10,9 @@
 		92C7605B233CF5200082A1FC /* ListActorsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7605A233CF5200082A1FC /* ListActorsModule.swift */; };
 		92C7605D233CF6F00082A1FC /* ListActorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C7605C233CF6F00082A1FC /* ListActorsPresenter.swift */; };
 		92C76061233CF72F0082A1FC /* ListActorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C76060233CF72F0082A1FC /* ListActorsModel.swift */; };
+		92F426BD23408B4200E96CA9 /* ListActorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F426BB23408B4200E96CA9 /* ListActorsTableViewCell.swift */; };
+		92F426BE23408B4200E96CA9 /* ListActorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F426BC23408B4200E96CA9 /* ListActorsTableViewCell.xib */; };
+		92F426C02340AEA200E96CA9 /* ListActorsAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F426BF2340AEA200E96CA9 /* ListActorsAdaptor.swift */; };
 		98B8CD6049353E68D10D88B7 /* Pods_TMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97C5A53175785566AF881A9 /* Pods_TMDB.framework */; };
 		F71BE3BB23327215005A0BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71BE3BA23327215005A0BA4 /* AppDelegate.swift */; };
 		F71BE3C223327217005A0BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F71BE3C123327217005A0BA4 /* Assets.xcassets */; };
@@ -47,6 +50,9 @@
 		92C7605A233CF5200082A1FC /* ListActorsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsModule.swift; sourceTree = "<group>"; };
 		92C7605C233CF6F00082A1FC /* ListActorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsPresenter.swift; sourceTree = "<group>"; };
 		92C76060233CF72F0082A1FC /* ListActorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsModel.swift; sourceTree = "<group>"; };
+		92F426BB23408B4200E96CA9 /* ListActorsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsTableViewCell.swift; sourceTree = "<group>"; };
+		92F426BC23408B4200E96CA9 /* ListActorsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListActorsTableViewCell.xib; sourceTree = "<group>"; };
+		92F426BF2340AEA200E96CA9 /* ListActorsAdaptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActorsAdaptor.swift; sourceTree = "<group>"; };
 		B03670A045BAB1A8BE150F70 /* Pods-Sample MVP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample MVP.release.xcconfig"; path = "Target Support Files/Pods-Sample MVP/Pods-Sample MVP.release.xcconfig"; sourceTree = "<group>"; };
 		E88B76BD53217998401F565B /* Pods-Sample MVP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample MVP.debug.xcconfig"; path = "Target Support Files/Pods-Sample MVP/Pods-Sample MVP.debug.xcconfig"; sourceTree = "<group>"; };
 		F71BE3B723327215005A0BA4 /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +180,9 @@
 				92C7605A233CF5200082A1FC /* ListActorsModule.swift */,
 				92C7605C233CF6F00082A1FC /* ListActorsPresenter.swift */,
 				92C76060233CF72F0082A1FC /* ListActorsModel.swift */,
+				92F426BB23408B4200E96CA9 /* ListActorsTableViewCell.swift */,
+				92F426BC23408B4200E96CA9 /* ListActorsTableViewCell.xib */,
+				92F426BF2340AEA200E96CA9 /* ListActorsAdaptor.swift */,
 			);
 			path = ListActors;
 			sourceTree = "<group>";
@@ -343,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F71BE3D7233272B2005A0BA4 /* ActorsDetailsViewController.xib in Resources */,
+				92F426BE23408B4200E96CA9 /* ListActorsTableViewCell.xib in Resources */,
 				F71BE3FB233290DF005A0BA4 /* LaunchScreen.storyboard in Resources */,
 				F71BE3C223327217005A0BA4 /* Assets.xcassets in Resources */,
 				F71BE3D323327286005A0BA4 /* ListActorsViewController.xib in Resources */,
@@ -409,6 +419,7 @@
 				F7BF21EF233AA202009DBDA5 /* UIViewController+Extension.swift in Sources */,
 				F7BF21F2233AA202009DBDA5 /* BaseListAdaptor.swift in Sources */,
 				F71BE3E9233275A9005A0BA4 /* NetworkDefaults.swift in Sources */,
+				92F426BD23408B4200E96CA9 /* ListActorsTableViewCell.swift in Sources */,
 				F7BF21F1233AA202009DBDA5 /* BaseViewProtocal.swift in Sources */,
 				F7BF21CE233A3A61009DBDA5 /* ListActorsProtocals.swift in Sources */,
 				F7BF21ED233AA202009DBDA5 /* BaseViewController.swift in Sources */,
@@ -419,6 +430,7 @@
 				F71BE3F523328C55005A0BA4 /* APIResponse.swift in Sources */,
 				92C7605B233CF5200082A1FC /* ListActorsModule.swift in Sources */,
 				F71BE3F323328C55005A0BA4 /* Person.swift in Sources */,
+				92F426C02340AEA200E96CA9 /* ListActorsAdaptor.swift in Sources */,
 				F71BE3D6233272B2005A0BA4 /* ActorsDetailsViewController.swift in Sources */,
 				92C7605D233CF6F00082A1FC /* ListActorsPresenter.swift in Sources */,
 				F71BE3BB23327215005A0BA4 /* AppDelegate.swift in Sources */,
