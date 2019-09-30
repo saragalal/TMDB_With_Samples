@@ -16,12 +16,11 @@ protocol ListActorsPresenterProtocal: BasePresenterProtocol {
     func loadActors()
     func refreshActores()
     func loadMoreActores()
-   
+    func didSelectCell(at index: Int)
 }
 
 protocol ListActorsViewProtocal: BaseViewProtocal {
     func add(actors: [Person]?)
-    func updateTableView()
     func clearData()
     func getSearchText() -> String?
 }

@@ -9,6 +9,10 @@
 import Foundation
 
 class ListActorsPresenter: BasePresenter, ListActorsPresenterProtocal{
+    func didSelectCell(at index: Int) {
+        
+    }
+    
     var currentPage: Int
     var view: ListActorsViewProtocal?
     var model: ListActorsModelProtocal?
@@ -57,7 +61,6 @@ class ListActorsPresenter: BasePresenter, ListActorsPresenterProtocal{
                 print("\(arrayOfPersons)")
                 let listActors = arrayOfPersons as? [Person]
                 self.view?.add(actors: listActors)
-                self.view?.updateTableView()
             case .failure(let error):
                 print("\(error)")
                // self.view?.showErrorMessage?(title: "error", message: error.localizedDescription)
@@ -72,7 +75,6 @@ class ListActorsPresenter: BasePresenter, ListActorsPresenterProtocal{
                 print("\(arrayOfPersons)")
                 let listActors = arrayOfPersons as? [Person]
                 self.view?.add(actors: listActors)
-                self.view?.updateTableView()
             case .failure(let error):
                 print("\(error)")
                 // self.view?.showErrorMessage?(title: "error", message: error.localizedDescription)
@@ -83,6 +85,5 @@ class ListActorsPresenter: BasePresenter, ListActorsPresenterProtocal{
     
     func removeDataFromTableView() {
         view?.clearData()
-        view?.updateTableView()
     }
 }

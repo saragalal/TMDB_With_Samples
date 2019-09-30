@@ -14,22 +14,27 @@ class ListActorsViewController: BaseViewController<ListActorsPresenter> {
     var listActorsAdaptor: ListActorsAdaptor?
     let searchBar = UISearchBar()
     var searchPerson: String? = ""
-     override func viewDidLoad() {
-        tableView.dataSource = self
-        tableView.delegate = self
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    override func viewDidLoad() {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(UINib(nibName: "ListActorsTableViewCell", bundle: nil), forCellReuseIdentifier: "ListActorsTableViewCell")
         listActorsAdaptor = ListActorsAdaptor()
+        listActorsAdaptor?.setAdaptor(tableView: tableView, reloadData: reloadTableView, didSelectCell: selectedCell(index:),showLoadingMore: showLoadingMore, loadMoreActores: loadMoreActores)
+        searchBar.delegate = self
+        searchBar.showsCancelButton = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem(rawValue: 12)! , target: self, action: #selector(searchFunc))
+        navigationItem.title = "Home"
+        setRefreshControl()
+        listActorsPresenter?.viewDidLoad?()
+    }
+    func setRefreshControl(){
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.accessibilityIdentifier = "refresh_control_label"
         tableView.refreshControl?.attributedTitle = NSAttributedString(string: "Refresh")
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         self.tableView.addSubview(self.tableView.refreshControl!)
-        searchBar.delegate = self
-        searchBar.showsCancelButton = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem(rawValue: 12)! , target: self, action: #selector(searchFunc))
-        navigationItem.title = "Home"
-        listActorsPresenter?.viewDidLoad?()
     }
     @objc func refresh(sender:AnyObject) {
         URLCache.shared.removeAllCachedResponses()
@@ -38,39 +43,26 @@ class ListActorsViewController: BaseViewController<ListActorsPresenter> {
         searchBar.text = ""
        listActorsPresenter?.refreshActores()
     }
-   
-    @IBAction func searchFunc (sender:AnyObject) {
-       // searchIsPressed = true
-        listActorsPresenter?.activateSearch()
-        self.searchBar.text = ""
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.navigationItem.rightBarButtonItem = nil
-        createSearchBar()
-        setGestures()
-    }
-    func setGestures(){
-        
-        let keyboardTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        keyboardTap.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(keyboardTap)
-        
-    }
-    @objc func hideKeyboard(){
-        print("hideKeyboard")
-        searchBar.resignFirstResponder()
-        self.view.endEditing(true)
-        if let cancelButton = self.searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.isEnabled = true
-        }
-    }
     
-    func createSearchBar(){
-        self.searchBar.showsCancelButton = true
-        searchBar.placeholder = "Search Person"
-        self.searchBar.becomeFirstResponder()
-        self.searchBar.tintColor = UIColor.lightGray
-        self.navigationItem.titleView = searchBar
-        self.view.endEditing(false)
+    override func setPresenter(presenter: ListActorsPresenter) {
+        listActorsPresenter = presenter
+    }
+   
+    func showLoadingMore(){
+        UIView.animate(withDuration: 1, animations: {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+            self.tableViewBottomConstraint.constant = -50
+            self.view.setNeedsUpdateConstraints()
+        })
+    }
+    func hideLoadingMore() {
+        UIView.animate(withDuration: 1, animations: {
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+            self.tableViewBottomConstraint.constant = 0
+            self.view.setNeedsUpdateConstraints()
+        })
     }
 }
 
@@ -87,44 +79,54 @@ extension ListActorsViewController: ListActorsViewProtocal {
        listActorsAdaptor?.add(items: actors)
     }
     
-    func updateTableView() {
+    func reloadTableView() {
+        if tableViewBottomConstraint.constant != 0 {
+            hideLoadingMore()
+         }
         self.tableView.reloadData()
         if self.tableView.refreshControl?.isRefreshing ?? false
             {
                 self.tableView.refreshControl?.endRefreshing()
             }
       }
-}
-extension ListActorsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listActorsAdaptor?.count() ?? 0
+    func selectedCell(index: Int){
+      listActorsPresenter?.didSelectCell(at: index)
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "ListActorsTableViewCell", for: indexPath) as? ListActorsTableViewCell {
-            if let actor = listActorsAdaptor?.getActor(at: indexPath.row){
-          cell.configureCell(person: actor)
-        return cell
-            }
-        }
-        fatalError()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let height = scrollView.frame.size.height
-        let contentYoffset = scrollView.contentOffset.y
-        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-        if distanceFromBottom == height - 5 {
-            print(" you reached end of the table")
-           listActorsPresenter?.loadMoreActores()
-        }
+        func loadMoreActores(){
+            self.listActorsPresenter?.loadMoreActores()
     }
 }
 extension ListActorsViewController: UISearchBarDelegate {
-   
+    @objc func searchFunc (sender:AnyObject) {
+        listActorsPresenter?.activateSearch()
+        self.searchBar.text = ""
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.navigationItem.rightBarButtonItem = nil
+        createSearchBar()
+        setGestures()
+    }
+    func createSearchBar(){
+        self.searchBar.showsCancelButton = true
+        searchBar.placeholder = "Search Person"
+        self.searchBar.becomeFirstResponder()
+        self.searchBar.tintColor = UIColor.lightGray
+        self.navigationItem.titleView = searchBar
+        self.view.endEditing(false)
+    }
+    func setGestures(){
+        let keyboardTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        keyboardTap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(keyboardTap)
+        
+    }
+    @objc func hideKeyboard(){
+        print("hideKeyboard")
+        searchBar.resignFirstResponder()
+        self.view.endEditing(true)
+        if let cancelButton = self.searchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.isEnabled = true
+        }
+    }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("textDidChange")
         listActorsAdaptor?.clear(reload: true)
@@ -138,7 +140,7 @@ extension ListActorsViewController: UISearchBarDelegate {
         if let cancelButton = self.searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
         }
-        if let searchText = searchPerson{
+        if searchPerson != nil{
             listActorsPresenter?.loadActors()
         }
         
@@ -150,7 +152,6 @@ extension ListActorsViewController: UISearchBarDelegate {
         tableView.reloadData()
      }
     
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         listActorsPresenter?.cancelSearch()
         searchBar.resignFirstResponder()
@@ -161,8 +162,6 @@ extension ListActorsViewController: UISearchBarDelegate {
         searchBar.showsCancelButton = false
         hideSearchBar()
     }
-    
-    
     func hideSearchBar() {
         navigationItem.titleView = nil
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem(rawValue: 12)! , target: self, action: #selector(searchFunc))

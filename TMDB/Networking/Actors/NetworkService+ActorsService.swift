@@ -16,7 +16,7 @@ extension NetworkManager {
         _ statusCode: StatusCode?
         ) -> Void) {
         
-        provider.request(MultiTarget(ActorsService.popular)) { (result) in
+        provider.request(MultiTarget(ActorsService.popular(page: pageNumber))) { (result) in
             switch result {
             case .success(let response):
                 if (200...299 ~= response.statusCode) {
@@ -50,7 +50,7 @@ extension NetworkManager {
         _ statusCode: StatusCode?
         ) -> Void) {
         
-        provider.request(MultiTarget(ActorsService.search(text: searchText))) { (result) in
+        provider.request(MultiTarget(ActorsService.search(page: pageNumber, text: searchText))) { (result) in
             switch result {
             case .success(let response):
                 if (200...299 ~= response.statusCode) {

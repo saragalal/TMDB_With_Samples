@@ -13,7 +13,7 @@ class ListActorsModule {
         let view = ListActorsViewController()
         let model = ListActorsModel()
         let presenter = ListActorsPresenter(view: view ,model: model)
-        view.listActorsPresenter = presenter
+        view.setPresenter(presenter: presenter) 
     return view
     }
   

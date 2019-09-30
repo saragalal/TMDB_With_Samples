@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListActorsViewController" customModule="TMDB" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="UbE-z5-RcP" id="I2d-JQ-UT5"/>
                 <outlet property="tableView" destination="b8i-iG-eBp" id="bdp-t6-hgQ"/>
+                <outlet property="tableViewBottomConstraint" destination="61A-dT-ebc" id="zI7-lA-OdR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,16 +24,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b8i-iG-eBp">
-                    <rect key="frame" x="2" y="20" width="371" height="645"/>
+                    <rect key="frame" x="2" y="20" width="371" height="647"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UbE-z5-RcP">
+                    <rect key="frame" x="167.5" y="622" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Hyw-bj-WWn"/>
+                        <constraint firstAttribute="height" constant="40" id="JuI-e4-C9L"/>
+                    </constraints>
+                    <color key="color" red="0.2901960784" green="0.73725490199999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="b8i-iG-eBp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="2" id="BIU-Bf-yYT"/>
-                <constraint firstItem="b8i-iG-eBp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="LiN-c3-a8B"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b8i-iG-eBp" secondAttribute="trailing" constant="2" id="LtD-Ev-hTZ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="b8i-iG-eBp" secondAttribute="bottom" constant="2" id="nsZ-5F-iLM"/>
+                <constraint firstItem="b8i-iG-eBp" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="61A-dT-ebc"/>
+                <constraint firstItem="UbE-z5-RcP" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="AVY-3o-vcf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b8i-iG-eBp" secondAttribute="trailing" constant="2" id="BsS-f3-TxH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="UbE-z5-RcP" secondAttribute="bottom" constant="5" id="U3P-93-FdZ"/>
+                <constraint firstItem="b8i-iG-eBp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="axO-iL-5iD"/>
+                <constraint firstItem="b8i-iG-eBp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="2" id="uWt-Bo-ElJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="130.40000000000001" y="131.78410794602701"/>
